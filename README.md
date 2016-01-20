@@ -21,15 +21,16 @@ Once both "votes" are locked in, the game server computes the result and adjusts
 
 ## Payoff Matrix
 
-The payoff matrix is the same, but the stakes increase exponentially the longer you play:
+The payoff matrix is always the same (although the stakes increase exponentially the longer you play):
 
-             |  P1 Coop   | Coop P1 Defect
-  ———————————+————————————+——————————————
-  P2 Coop    | P1+2,P2+2  |  P1+1,P2-1
-  P2 Defect  | P1-1,P2-1  |  P1-2,P2-2
-  
-  cooperate — if both choose, each players get +2
-  defect    — if both choose, both players get -2; if just one, +1 to defector and -1 to cooperators
+                 |  P1 Coop   | Coop P1 Defect
+      ———————————+————————————+——————————————
+      P2 Coop    | P1+2,P2+2  |  P1+1,P2-1
+      P2 Defect  | P1-1,P2-1  |  P1-2,P2-2
+      
+      cooperate —  if both choose, each players get +2
+      defect    —  if both choose, both players get -2; 
+                   but if just one, +1 to defector and -1 to cooperators
 
 ## Payoff Multipliers
   
@@ -60,3 +61,11 @@ The following information is displayed as the game proceeds:
   - Your opponent's point total
   - Whether your opponent is a robot
   - The number of games your opponent has played
+
+## API
+
+Another thought here is to expose an API where people can write bots to play IPD. 
+
+Users would have to opt-in to playing against a bot. Bots will be rate-limited: real users will be fairly round-robined to available bots in the waiting pool. If a bot doesn't respond to its webhook in a timely fashion it will probably be ejected.
+
+On the other hand, bots playing each other should be really open and there should maybe even be a separate tourney just for them.
